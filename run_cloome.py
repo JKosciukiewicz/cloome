@@ -3,7 +3,6 @@ from cloome.model import CLOOME
 from huggingface_hub import hf_hub_download
 import torch
 
-from src.notebooks.zeroshot import images
 
 # get checkpoint from Hugging Face
 FILENAME = "cloome-bioactivity.pt"
