@@ -1,6 +1,7 @@
 import os
 from cloome.model import CLOOME
 from huggingface_hub import hf_hub_download
+import torch
 
 from src.notebooks.zeroshot import images
 
@@ -16,3 +17,7 @@ images = [os.path.join("example", "images", fname) for fname in image_df['Image_
 
 encoder = CLOOME(ckpt, config)
 img_embeddings = encoder.encode_images(images)
+
+save_path = "/net/pr2/projects/plgrid/plggicv/jk/datasets/bbbc_cloome/img_embeddings.pt"
+torch.save(img_embeddings, save_path)
+print(f"Embeddings saved to {save_path}")
