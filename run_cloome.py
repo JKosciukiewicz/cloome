@@ -12,7 +12,7 @@ ckpt = hf_hub_download(REPO_ID, FILENAME)
 config = "src/training/model_configs/RN50.json"
 #images = [os.path.join("example", "images", f"{channel}.tif") for channel in ["Mito", "ERSyto", "ERSytoBleed", "Ph_golgi", "Hoechst"]]
 image_df = pd.read_csv("/net/tscratch/people/plgjkosciukiewi/bbbc021/BBBC_5_CHANNEL/converted_images.csv")
-images = [os.path.join("example", "images", fname) for fname in image_df['Image_Name']]
+images = [[os.path.join("example", "images", fname)] for fname in image_df['Image_Name']]
 
 encoder = CLOOME(ckpt, config)
 img_embeddings = encoder.encode_images(images)
