@@ -16,6 +16,7 @@ images = [os.path.join("example", "images", fname) for fname in image_df['Image_
 
 encoder = CLOOME(ckpt, config)
 for idx, image in enumerate(images):
+    print(image)
     img_embeddings = encoder.encode_images(image)
 
     save_path = f"/net/pr2/projects/plgrid/plggicv/jk/datasets/bbbc_cloome/img_embedding_{idx}.pt"
