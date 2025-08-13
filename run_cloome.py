@@ -15,8 +15,9 @@ image_df = pd.read_csv("/net/tscratch/people/plgjkosciukiewi/bbbc021/BBBC_5_CHAN
 images = [os.path.join("example", "images", fname) for fname in image_df['Image_Name']]
 
 encoder = CLOOME(ckpt, config)
-img_embeddings = encoder.encode_images([images])
+for idx, image in enumerate(images):
+    img_embeddings = encoder.encode_images(image)
 
-save_path = "/net/pr2/projects/plgrid/plggicv/jk/datasets/bbbc_cloome/img_embeddings.pt"
-torch.save(img_embeddings, save_path)
-print(f"Embeddings saved to {save_path}")
+    save_path = f"/net/pr2/projects/plgrid/plggicv/jk/datasets/bbbc_cloome/img_embedding_{idx}.pt"
+    torch.save(img_embeddings, save_path)
+    print(f"Embeddings saved to {save_path}")
